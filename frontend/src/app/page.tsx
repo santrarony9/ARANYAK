@@ -10,99 +10,138 @@ export default function Home() {
       <Header />
       
       {/* Hero Section */}
-      <section className="relative h-[80vh] flex items-center justify-center overflow-hidden">
+      <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <Image 
           src="/hero-banner.png" 
           alt="Aranyak Jewellers Collection" 
           fill
-          className="object-cover scale-105 hover:scale-100 transition-transform duration-[10s]"
+          className="object-cover scale-110 animate-slow-zoom"
           priority
         />
-        <div className="absolute inset-0 bg-black/40" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/60" />
         
-        <div className="relative z-10 text-center space-y-6 px-4">
-          <h2 className="text-secondary text-sm md:text-base font-medium tracking-[0.5em] uppercase animate-in fade-in slide-in-from-bottom-4 duration-1000">
-            Crafting Elegance Since 1995
-          </h2>
-          <h1 className="text-4xl md:text-7xl font-serif font-bold text-white leading-tight animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200">
-            Timeless Treasures for <br /> Every Occasion
-          </h1>
-          <div className="pt-8 animate-in fade-in slide-in-from-bottom-12 duration-1000 delay-500">
-            <Link 
-              href="/collections" 
-              className="bg-secondary text-primary px-10 py-4 font-bold tracking-widest hover:bg-white transition-all uppercase text-sm"
-            >
-              Explore Collections
-            </Link>
+        <div className="relative z-10 text-center space-y-8 px-4 max-w-5xl mx-auto">
+          <div className="reveal">
+            <h2 className="text-secondary text-xs md:text-sm font-medium tracking-[0.6em] uppercase mb-4">
+              Legacy of Excellence Since 1995
+            </h2>
+            <h1 className="text-5xl md:text-8xl font-serif font-bold text-white leading-[1.1] mb-8">
+              Where Every Piece <br /> <span className="font-editorial text-secondary">Tells a Story</span>
+            </h1>
+            <div className="flex flex-col md:flex-row items-center justify-center gap-6">
+              <Link 
+                href="/collections" 
+                className="group relative px-12 py-5 bg-secondary text-primary font-bold tracking-[0.3em] uppercase text-[10px] overflow-hidden transition-all"
+              >
+                <span className="relative z-10">Discover Masterpieces</span>
+                <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+              </Link>
+              <Link 
+                href="/stores" 
+                className="px-12 py-5 border border-white/30 text-white font-bold tracking-[0.3em] uppercase text-[10px] hover:bg-white hover:text-primary transition-all"
+              >
+                Visit Our Showrooms
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center space-y-2 opacity-50">
+          <div className="w-[1px] h-12 bg-white/50 relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-full bg-secondary animate-bounce-slow" />
           </div>
         </div>
       </section>
 
-      {/* Shop by Category */}
-      <section className="py-24 bg-ivory">
+      {/* Signature Promise */}
+      <section className="py-24 bg-white">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16 space-y-2">
-            <h3 className="text-primary text-3xl md:text-4xl font-serif font-bold">Shop by Category</h3>
-            <p className="text-muted-foreground text-sm tracking-widest uppercase">Discover our handpicked selections</p>
-            <div className="w-24 h-[1px] bg-secondary mx-auto mt-4" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
+            <div className="text-center space-y-4 reveal">
+              <div className="text-3xl text-secondary mb-4">✧</div>
+              <h4 className="text-lg font-serif font-bold tracking-tight text-primary">Certified Authenticity</h4>
+              <p className="text-sm text-muted-foreground leading-relaxed">Every diamond and gemstone is ethically sourced and BIS Hallmarked for guaranteed purity.</p>
+            </div>
+            <div className="text-center space-y-4 reveal delay-100">
+              <div className="text-3xl text-secondary mb-4">✧</div>
+              <h4 className="text-lg font-serif font-bold tracking-tight text-primary">Master Craftsmanship</h4>
+              <p className="text-sm text-muted-foreground leading-relaxed">Our artisans spend hundreds of hours handcrafting each unique piece to perfection.</p>
+            </div>
+            <div className="text-center space-y-4 reveal delay-200">
+              <div className="text-3xl text-secondary mb-4">✧</div>
+              <h4 className="text-lg font-serif font-bold tracking-tight text-primary">Lifetime Exchange</h4>
+              <p className="text-sm text-muted-foreground leading-relaxed">We stand by our quality with transparent lifetime exchange and buy-back policies.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Editorial Category Section */}
+      <section className="py-32 bg-ivory overflow-hidden">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row items-end justify-between mb-20">
+            <div className="space-y-4 reveal">
+              <p className="text-[10px] tracking-[0.5em] uppercase text-secondary font-bold">Curated Selections</p>
+              <h3 className="text-4xl md:text-6xl font-serif font-bold text-primary italic">The Art of <span className="text-foreground">Adornment</span></h3>
+            </div>
+            <Link href="/collections" className="text-xs font-bold tracking-widest uppercase border-b border-primary/20 pb-2 hover:border-secondary transition-all mt-8 md:mt-0">
+              View All Categories
+            </Link>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-            {CATEGORIES.map((cat) => (
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {CATEGORIES.slice(0, 4).map((cat, i) => (
               <Link 
                 key={cat.id} 
                 href={`/category/${cat.slug}`}
-                className="group relative aspect-square bg-white shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col items-center justify-center p-6 border border-border"
+                className="group relative aspect-[3/4] overflow-hidden bg-white reveal"
+                style={{ animationDelay: `${i * 100}ms` }}
               >
-                <div className="text-primary group-hover:scale-110 transition-transform duration-500 mb-4">
-                  {/* Category Placeholder Icon/Image */}
-                  <div className="w-16 h-16 rounded-full bg-primary/5 flex items-center justify-center border border-primary/10">
-                    <span className="text-xl font-serif font-bold text-primary">{cat.name[0]}</span>
-                  </div>
+                <div className="absolute inset-0 bg-primary/5 group-hover:bg-primary/0 transition-all duration-700" />
+                <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center space-y-4">
+                   <div className="text-6xl font-serif text-primary/10 group-hover:text-primary group-hover:scale-125 transition-all duration-700">
+                     {cat.name[0]}
+                   </div>
+                   <h5 className="text-xl font-serif font-bold text-primary">{cat.name}</h5>
+                   <p className="text-[9px] tracking-[0.2em] uppercase text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity">Explore More</p>
                 </div>
-                <span className="text-xs md:text-sm font-medium text-foreground text-center uppercase tracking-wider group-hover:text-primary">
-                  {cat.name}
-                </span>
-                
-                {/* Decorative corner */}
-                <div className="absolute top-0 right-0 w-8 h-8 border-t border-r border-transparent group-hover:border-secondary transition-all" />
-                <div className="absolute bottom-0 left-0 w-8 h-8 border-b border-l border-transparent group-hover:border-secondary transition-all" />
+                <div className="absolute inset-4 border border-primary/10 group-hover:border-secondary/30 transition-all duration-700 pointer-events-none" />
               </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Featured Collections */}
-      <section className="py-24">
+      {/* Featured Showcase */}
+      <section className="py-32 bg-white">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="relative h-[600px] group overflow-hidden shadow-2xl">
-              <Image 
-                src="/bridal-edit.png" 
-                alt="The Bridal Edit" 
-                fill
-                className="object-cover group-hover:scale-110 transition-transform duration-[2s]"
-              />
-              <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-all duration-700 z-10" />
-              <div className="absolute inset-0 flex flex-col items-center justify-center z-20 text-white space-y-4">
-                <h4 className="text-4xl font-serif font-bold tracking-tight">The Bridal Edit</h4>
-                <p className="text-sm tracking-[0.4em] uppercase text-ivory/90">Make your day unforgettable</p>
-                <Link href="/collections/bridal" className="mt-4 bg-white/10 backdrop-blur-md border border-white/30 px-8 py-3 hover:bg-white hover:text-primary transition-all text-xs tracking-[0.3em] uppercase">Shop Now</Link>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            <div className="relative group reveal">
+              <div className="absolute -inset-4 border border-secondary/20 translate-x-4 translate-y-4 -z-10 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-700" />
+              <div className="relative aspect-square overflow-hidden gold-foil-border">
+                <Image 
+                  src="/bridal-edit.png" 
+                  alt="The Bridal Edit" 
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-1000"
+                />
               </div>
             </div>
-            <div className="relative h-[600px] group overflow-hidden shadow-2xl">
-              <Image 
-                src="/modern-aura.png" 
-                alt="Modern Aura" 
-                fill
-                className="object-cover group-hover:scale-110 transition-transform duration-[2s]"
-              />
-              <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-700 z-10" />
-              <div className="absolute inset-0 flex flex-col items-center justify-center z-20 text-white space-y-4">
-                <h4 className="text-4xl font-serif font-bold tracking-tight">Modern Aura</h4>
-                <p className="text-sm tracking-[0.4em] uppercase text-ivory/90">Everyday luxury for the youth</p>
-                <Link href="/collections/aura" className="mt-4 bg-white/10 backdrop-blur-md border border-white/30 px-8 py-3 hover:bg-white hover:text-primary transition-all text-xs tracking-[0.3em] uppercase">Shop Now</Link>
+            <div className="space-y-8 reveal delay-200">
+              <span className="text-[10px] tracking-[0.5em] uppercase text-secondary font-bold">Bridal Special</span>
+              <h3 className="text-5xl md:text-7xl font-serif font-bold text-primary leading-tight">Heritage <br /> <span className="font-editorial">Excellence</span></h3>
+              <p className="text-muted-foreground leading-relaxed max-w-md italic">
+                "Our bridal collections are a tribute to the rich heritage of Tripura, blending traditional motifs with contemporary elegance for the modern bride."
+              </p>
+              <div className="pt-4">
+                <Link 
+                  href="/category/gold" 
+                  className="inline-flex items-center space-x-6 group"
+                >
+                  <span className="text-xs font-bold tracking-[0.4em] uppercase">Shop Bridal Collection</span>
+                  <div className="w-12 h-[1px] bg-primary group-hover:w-20 transition-all" />
+                </Link>
               </div>
             </div>
           </div>

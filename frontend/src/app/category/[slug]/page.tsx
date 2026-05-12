@@ -38,46 +38,46 @@ export default function CategoryPage() {
   });
 
   return (
-    <main className="min-h-screen flex flex-col bg-ivory">
+    <main className="min-h-screen flex flex-col bg-white">
       <Header />
-      <section className="py-20 burgundy-gradient text-white text-center relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10 pointer-events-none">
-          <div className="absolute top-0 left-0 w-full h-full bg-[url('/pattern.png')] bg-repeat opacity-20" />
-        </div>
-        <div className="relative z-10">
-          <h1 className="text-5xl font-serif font-bold mb-4 tracking-tight capitalize">
+      <section className="py-24 burgundy-gradient text-white text-center relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10 bg-[url('/pattern.png')] bg-repeat" />
+        <div className="relative z-10 reveal">
+          <h1 className="text-6xl font-serif font-bold mb-6 tracking-tight capitalize">
             {category?.name || slug.replace(/-/g, ' ')}
           </h1>
-          <div className="flex items-center justify-center space-x-4">
-            <div className="h-[1px] w-8 bg-secondary" />
-            <p className="text-xs tracking-[0.4em] uppercase text-ivory/80">{products.length} Exquisite Pieces</p>
-            <div className="h-[1px] w-8 bg-secondary" />
+          <div className="flex items-center justify-center space-x-6">
+            <div className="h-[1px] w-12 bg-secondary/50" />
+            <p className="text-xs tracking-[0.5em] uppercase text-ivory/80">{products.length} Masterpieces</p>
+            <div className="h-[1px] w-12 bg-secondary/50" />
           </div>
         </div>
       </section>
 
-      <section className="py-12 flex-1">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row md:items-center justify-between mb-12 gap-6 border-b border-border pb-8">
-            <div className="flex flex-wrap gap-3">
+      <section className="py-16 flex-1">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-16 gap-8 reveal">
+            <div className="flex flex-wrap gap-4">
               {category?.subcategories?.map(sub => (
                 <Link 
                   key={sub.id} 
                   href={`/category/${slug}/${sub.slug}`}
-                  className="px-5 py-2 text-[10px] font-bold border border-border hover:border-primary hover:text-primary bg-white transition-all uppercase tracking-widest shadow-sm hover:shadow-md"
+                  className="px-8 py-3 text-[10px] font-bold border border-border hover:border-primary hover:text-primary bg-white transition-all uppercase tracking-widest hover:shadow-xl group flex items-center gap-2"
                 >
+                  <span className="w-1 h-1 rounded-full bg-secondary opacity-0 group-hover:opacity-100 transition-opacity" />
                   {sub.name}
                 </Link>
               ))}
             </div>
-            <div className="flex items-center space-x-3">
-              <span className="text-[10px] uppercase tracking-widest font-bold text-muted-foreground">Sort By:</span>
+            
+            <div className="flex items-center space-x-4 border-l border-border pl-8">
+              <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-muted-foreground">Arrange By</span>
               <select 
                 value={sortBy} 
                 onChange={e => setSortBy(e.target.value)}
-                className="text-[10px] font-bold border border-border px-4 py-2 bg-white uppercase tracking-widest outline-none focus:border-primary transition-all cursor-pointer"
+                className="text-[10px] font-bold border-none bg-transparent uppercase tracking-widest outline-none cursor-pointer text-primary"
               >
-                <option value="newest">New Arrivals</option>
+                <option value="newest">Latest Arrivals</option>
                 <option value="price-asc">Price: Low to High</option>
                 <option value="price-desc">Price: High to Low</option>
               </select>
@@ -85,23 +85,28 @@ export default function CategoryPage() {
           </div>
 
           {loading ? (
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-10">
               {[...Array(8)].map((_, i) => (
-                <div key={i} className="animate-pulse">
-                  <div className="aspect-square bg-gray-200 mb-3" />
-                  <div className="h-4 bg-gray-200 mb-2 w-3/4" />
-                  <div className="h-3 bg-gray-200 w-1/2" />
+                <div key={i} className="animate-pulse space-y-4">
+                  <div className="aspect-[4/5] bg-ivory" />
+                  <div className="h-4 bg-ivory w-3/4" />
+                  <div className="h-4 bg-ivory w-1/2" />
                 </div>
               ))}
             </div>
           ) : sorted.length > 0 ? (
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-              {sorted.map(p => <ProductCard key={p.id} product={p} />)}
+            <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
+              {sorted.map((p, i) => (
+                <div key={p.id} className="reveal" style={{ animationDelay: `${i * 50}ms` }}>
+                  <ProductCard product={p} />
+                </div>
+              ))}
             </div>
           ) : (
-            <div className="text-center py-24">
-              <h3 className="text-lg font-serif font-bold mb-2">No Products Yet</h3>
-              <p className="text-sm text-muted-foreground">New arrivals coming soon!</p>
+            <div className="text-center py-32 space-y-4 reveal">
+              <div className="text-4xl text-primary/10">✧</div>
+              <h3 className="text-2xl font-serif font-bold">Collection Arriving Soon</h3>
+              <p className="text-sm text-muted-foreground italic">Our artisans are crafting something special.</p>
             </div>
           )}
         </div>
