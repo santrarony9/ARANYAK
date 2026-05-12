@@ -3,6 +3,7 @@
 import React from "react";
 import { AuthProvider } from "@/context/AuthContext";
 import { CartProvider } from "@/context/CartContext";
+import { WishlistProvider } from "@/context/WishlistContext";
 import GoldRateBar from "@/components/layout/GoldRateBar";
 import CartDrawer from "@/components/layout/CartDrawer";
 
@@ -13,11 +14,13 @@ export default function ClientProviders({
 }) {
   return (
     <AuthProvider>
-      <CartProvider>
-        <GoldRateBar />
-        <CartDrawer />
-        {children}
-      </CartProvider>
+      <WishlistProvider>
+        <CartProvider>
+          <GoldRateBar />
+          <CartDrawer />
+          {children}
+        </CartProvider>
+      </WishlistProvider>
     </AuthProvider>
   );
 }

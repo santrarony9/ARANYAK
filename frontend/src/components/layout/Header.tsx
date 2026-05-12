@@ -4,10 +4,12 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { CATEGORIES } from '@/constants/categories';
 import { useCart } from '@/context/CartContext';
+import { useWishlist } from '@/context/WishlistContext';
 
 const Header = () => {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const { cartCount, setIsCartOpen } = useCart();
+  const { wishlistCount } = useWishlist();
 
   return (
     <header className="sticky top-0 z-50 w-full glass border-b border-white/20">
@@ -63,9 +65,12 @@ const Header = () => {
           <button className="text-foreground hover:text-primary transition-colors">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
           </button>
-          <button className="text-foreground hover:text-primary transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-          </button>
+          <Link href="/wishlist" className="relative text-foreground hover:text-primary transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+            <span className="absolute -top-2 -right-2 bg-secondary text-primary text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
+              {wishlistCount}
+            </span>
+          </Link>
           <button 
             onClick={() => setIsCartOpen(true)}
             className="relative text-foreground hover:text-primary transition-colors"
