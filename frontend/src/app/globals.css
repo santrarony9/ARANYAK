@@ -88,3 +88,17 @@ h1, h2, h3, h4, h5, h6 {
   background: linear-gradient(135deg, #4A0404, #800000, #4A0404);
 }
 
+
+/* Marquee Animation */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}

@@ -77,23 +77,33 @@ export default function Home() {
       <section className="py-24">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="relative h-[500px] group overflow-hidden">
-              <div className="absolute inset-0 bg-primary/20 group-hover:bg-primary/40 transition-all duration-700 z-10" />
+            <div className="relative h-[600px] group overflow-hidden shadow-2xl">
+              <Image 
+                src="/bridal-edit.png" 
+                alt="The Bridal Edit" 
+                fill
+                className="object-cover group-hover:scale-110 transition-transform duration-[2s]"
+              />
+              <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-all duration-700 z-10" />
               <div className="absolute inset-0 flex flex-col items-center justify-center z-20 text-white space-y-4">
-                <h4 className="text-3xl font-serif font-bold">The Bridal Edit</h4>
-                <p className="text-sm tracking-widest uppercase text-ivory/80">Make your day unforgettable</p>
-                <Link href="/collections/bridal" className="border-b border-white hover:text-secondary hover:border-secondary transition-all text-xs tracking-[0.3em] uppercase pt-2 pb-1">Shop Now</Link>
+                <h4 className="text-4xl font-serif font-bold tracking-tight">The Bridal Edit</h4>
+                <p className="text-sm tracking-[0.4em] uppercase text-ivory/90">Make your day unforgettable</p>
+                <Link href="/collections/bridal" className="mt-4 bg-white/10 backdrop-blur-md border border-white/30 px-8 py-3 hover:bg-white hover:text-primary transition-all text-xs tracking-[0.3em] uppercase">Shop Now</Link>
               </div>
-              <div className="w-full h-full bg-gray-200" /> {/* Add real images later */}
             </div>
-            <div className="relative h-[500px] group overflow-hidden">
-              <div className="absolute inset-0 bg-secondary/20 group-hover:bg-secondary/40 transition-all duration-700 z-10" />
+            <div className="relative h-[600px] group overflow-hidden shadow-2xl">
+              <Image 
+                src="/modern-aura.png" 
+                alt="Modern Aura" 
+                fill
+                className="object-cover group-hover:scale-110 transition-transform duration-[2s]"
+              />
+              <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-700 z-10" />
               <div className="absolute inset-0 flex flex-col items-center justify-center z-20 text-white space-y-4">
-                <h4 className="text-3xl font-serif font-bold">Modern Aura</h4>
-                <p className="text-sm tracking-widest uppercase text-ivory/80">Everyday luxury for the youth</p>
-                <Link href="/collections/aura" className="border-b border-white hover:text-primary hover:border-primary transition-all text-xs tracking-[0.3em] uppercase pt-2 pb-1">Shop Now</Link>
+                <h4 className="text-4xl font-serif font-bold tracking-tight">Modern Aura</h4>
+                <p className="text-sm tracking-[0.4em] uppercase text-ivory/90">Everyday luxury for the youth</p>
+                <Link href="/collections/aura" className="mt-4 bg-white/10 backdrop-blur-md border border-white/30 px-8 py-3 hover:bg-white hover:text-primary transition-all text-xs tracking-[0.3em] uppercase">Shop Now</Link>
               </div>
-              <div className="w-full h-full bg-gray-300" /> {/* Add real images later */}
             </div>
           </div>
         </div>
