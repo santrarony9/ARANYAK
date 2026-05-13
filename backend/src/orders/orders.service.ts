@@ -18,15 +18,29 @@ export class OrdersService {
   async createOrder(
     userId: string,
     shippingAddress: any,
+    items?: any[],
+    totalAmount?: number,
   ) {
-    // 1. Get Cart
-    const cart = await this.cartService.getCart(userId);
-    if (!cart || cart.items.length === 0) {
-      throw new BadRequestException('Cart is empty');
+    // 1. Get Cart if items not provided
+    let orderItems = items;
+    let finalTotal = totalAmount;
+
+    if (!orderItems) {
+      const cart = await this.cartService.getCart(userId);
+      if (!cart || cart.items.length === 0) {
+        throw new BadRequestException('Cart is empty');
+      }
+      orderItems = cart.items.map((item) => ({
+        productId: item.productId,
+        quantity: item.quantity,
+        price: item.calculatedPrice || 0,
+        name: item.product.name,
+      }));
+      finalTotal = cart.cartTotal;
     }
 
     // 2. Check Stock
-    for (const item of cart.items) {
+    for (const item of orderItems) {
       const product = await this.prisma.product.findUnique({
         where: { id: item.productId },
       });
@@ -39,35 +53,36 @@ export class OrdersService {
     }
 
     // 3. Create Order
-    const totalAmount = cart.cartTotal;
     const order = await this.prisma.order.create({
       data: {
         userId,
-        totalAmount,
+        totalAmount: finalTotal,
         status: 'PENDING',
         paymentStatus: 'PENDING',
         shippingAddress,
         items: {
-          create: cart.items.map((item) => ({
+          create: orderItems.map((item) => ({
             productId: item.productId,
             quantity: item.quantity,
-            price: item.calculatedPrice || 0,
-            name: item.product.name,
+            price: item.price,
+            name: item.name,
           })),
         },
       },
     });
 
     // 4. Deduct Stock
-    for (const item of cart.items) {
+    for (const item of orderItems) {
       await this.prisma.product.update({
         where: { id: item.productId },
         data: { stockCount: { decrement: item.quantity } },
       });
     }
 
-    // 5. Clear Cart
-    await this.cartService.clearCart(userId);
+    // 5. Clear Backend Cart if it was used
+    if (!items) {
+      await this.cartService.clearCart(userId);
+    }
 
     return order;
   }

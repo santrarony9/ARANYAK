@@ -20,8 +20,16 @@ export class OrdersController {
 
   @Post()
   @UseGuards(JwtAuthGuard)
-  createOrder(@Request() req, @Body() body: { shippingAddress: any }) {
-    return this.ordersService.createOrder(req.user.userId, body.shippingAddress);
+  createOrder(
+    @Request() req, 
+    @Body() body: { shippingAddress: any; items?: any[]; totalAmount?: number }
+  ) {
+    return this.ordersService.createOrder(
+      req.user.userId, 
+      body.shippingAddress, 
+      body.items, 
+      body.totalAmount
+    );
   }
 
   @Get('my')

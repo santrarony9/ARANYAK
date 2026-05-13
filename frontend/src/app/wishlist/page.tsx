@@ -6,6 +6,7 @@ import Footer from '@/components/layout/Footer';
 import { useWishlist } from '@/context/WishlistContext';
 import { useCart } from '@/context/CartContext';
 import Link from 'next/link';
+import EmptyState from '@/components/ui/EmptyState';
 
 export default function WishlistPage() {
   const { wishlist, removeFromWishlist } = useWishlist();
@@ -35,15 +36,13 @@ export default function WishlistPage() {
       <section className="py-16 flex-1">
         <div className="container mx-auto px-4 max-w-6xl">
           {wishlist.length === 0 ? (
-            <div className="text-center py-20 space-y-6">
-              <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto shadow-sm">
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" className="text-primary/20"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
-              </div>
-              <p className="font-serif text-lg text-muted-foreground">Your wishlist is currently empty.</p>
-              <Link href="/collections" className="inline-block bg-primary text-white px-10 py-4 text-xs font-bold tracking-widest uppercase hover:bg-secondary transition-all">
-                Discover Collections
-              </Link>
-            </div>
+            <EmptyState 
+              title="A Blank Canvas"
+              description="Your heart hasn't found its match yet. Explore our timeless collections and add pieces that speak to your soul."
+              icon={<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>}
+              actionText="Discover Collections"
+              actionHref="/collections"
+            />
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {wishlist.map((item) => (

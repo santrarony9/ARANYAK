@@ -114,17 +114,53 @@ class ApiClient {
   }
 
   // Orders
-  async createOrder(token: string, shippingAddress: any) {
+  async createOrder(token: string, shippingAddress: any, items: any[], totalAmount: number) {
     const res = await fetch(`${this.baseUrl}/orders`, {
       method: 'POST',
       headers: this.getHeaders(token),
-      body: JSON.stringify({ shippingAddress }),
+      body: JSON.stringify({ shippingAddress, items, totalAmount }),
     });
     return res.json();
   }
 
   async getMyOrders(token: string) {
     const res = await fetch(`${this.baseUrl}/orders/my`, {
+      headers: this.getHeaders(token),
+    });
+    return res.json();
+  }
+
+  // Admin Actions
+  async updateGoldPrice(token: string, purity: number, pricePer10g: number) {
+    const res = await fetch(`${this.baseUrl}/gold-price`, {
+      method: 'POST',
+      headers: this.getHeaders(token),
+      body: JSON.stringify({ purity, pricePer10g }),
+    });
+    return res.json();
+  }
+
+  async createProduct(token: string, data: any) {
+    const res = await fetch(`${this.baseUrl}/products`, {
+      method: 'POST',
+      headers: this.getHeaders(token),
+      body: JSON.stringify(data),
+    });
+    return res.json();
+  }
+
+  async updateProduct(token: string, id: string, data: any) {
+    const res = await fetch(`${this.baseUrl}/products/${id}`, {
+      method: 'PUT',
+      headers: this.getHeaders(token),
+      body: JSON.stringify(data),
+    });
+    return res.json();
+  }
+
+  async deleteProduct(token: string, id: string) {
+    const res = await fetch(`${this.baseUrl}/products/${id}`, {
+      method: 'DELETE',
       headers: this.getHeaders(token),
     });
     return res.json();
