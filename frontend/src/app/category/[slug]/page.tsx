@@ -123,6 +123,7 @@ export default function CategoryPage() {
         </div>
       </section>
       <Footer />
+      </main>
     </FadeIn>
   );
 }
