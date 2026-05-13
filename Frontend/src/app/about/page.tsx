@@ -24,16 +24,33 @@ export default function AboutPage() {
         <div className="container mx-auto px-4 max-w-4xl">
           <div className="space-y-12 text-center">
             <Reveal>
-              <div>
-                <h2 className="text-2xl font-serif font-bold text-primary mb-4">Who We Are</h2>
-                <p className="text-muted-foreground leading-relaxed">
-                  Aranyak Jewellers is one of Tripura&apos;s most trusted names in gold, diamond, and silver jewellery.
-                  With multiple showrooms across the state, we bring you handcrafted pieces that blend traditional Bengali
-                  artistry with contemporary design. Every piece at Aranyak is a testament to our commitment to purity,
-                  craftsmanship, and trust.
-                </p>
+              <div className="grid md:grid-cols-2 gap-12 items-center text-left">
+                <div className="relative aspect-square overflow-hidden gold-foil-border">
+                  <img 
+                    src="/md.jpg" 
+                    alt="Managing Director - Aranyak Jewellers" 
+                    className="object-cover w-full h-full"
+                  />
+                </div>
+                <div className="space-y-6">
+                  <h2 className="text-3xl font-serif font-bold text-primary italic">A Vision of Purity</h2>
+                  <p className="text-muted-foreground leading-relaxed">
+                    "At Aranyak Jewellers, we don't just sell jewellery; we preserve traditions. Every piece is a promise of trust and a celebration of craftsmanship that has defined Tripura's elegance for over 25 years."
+                  </p>
+                  <p className="text-[10px] font-bold tracking-[0.3em] uppercase text-secondary">— Managing Director</p>
+                </div>
               </div>
             </Reveal>
+
+            <div className="pt-12">
+              <h2 className="text-2xl font-serif font-bold text-primary mb-4">Who We Are</h2>
+              <p className="text-muted-foreground leading-relaxed">
+                Aranyak Jewellers is one of Tripura&apos;s most trusted names in gold, diamond, and silver jewellery.
+                With multiple showrooms across the state, we bring you handcrafted pieces that blend traditional Bengali
+                artistry with contemporary design. Every piece at Aranyak is a testament to our commitment to purity,
+                craftsmanship, and trust.
+              </p>
+            </div>
 
             <div className="grid md:grid-cols-3 gap-8">
               <Reveal delay={0.1}>
