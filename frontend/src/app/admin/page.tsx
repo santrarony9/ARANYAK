@@ -5,6 +5,7 @@ import Header from '@/components/layout/Header';
 import { useAuth } from '@/context/AuthContext';
 import { api } from '@/lib/api';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 export default function AdminPage() {
   const { user, token, isAuthenticated } = useAuth();
