@@ -30,7 +30,7 @@ export default function Home() {
         </motion.div>
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/30 to-black/70" />
         
-        <div className="relative z-10 text-center space-y-8 px-4 max-w-5xl mx-auto">
+        <div className="relative z-10 flex flex-col items-center text-center space-y-8 px-4 max-w-5xl mx-auto">
             <Reveal y={40}>
               <h2 className="text-secondary text-xs md:text-sm font-medium tracking-[0.6em] uppercase mb-4 drop-shadow-md">
                 Legacy of Excellence Since 1995
