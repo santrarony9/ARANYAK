@@ -85,7 +85,7 @@ h1, h2, h3, h4, h5, h6 {
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Luxury Gradients */
+/* Luxury Gradients & Textures */
 .gold-gradient {
   background: linear-gradient(135deg, #B8860B 0%, #FFD700 25%, #DAA520 50%, #FFD700 75%, #B8860B 100%);
   -webkit-background-clip: text;
@@ -96,6 +96,46 @@ h1, h2, h3, h4, h5, h6 {
 
 .burgundy-gradient {
   background: linear-gradient(135deg, #2D0202 0%, #4A0404 50%, #2D0202 100%);
+}
+
+.silk-texture {
+  position: relative;
+}
+
+.silk-texture::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("https://www.transparenttextures.com/patterns/silk.png");
+  opacity: 0.03;
+  pointer-events: none;
+}
+
+.luxury-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.luxury-shimmer::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 45%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 55%
+  );
+  transform: rotate(45deg);
+  animation: shimmer-swipe 6s infinite;
+}
+
+@keyframes shimmer-swipe {
+  0% { transform: translate(-100%, -100%) rotate(45deg); }
+  20%, 100% { transform: translate(100%, 100%) rotate(45deg); }
 }
 
 .gold-foil-border {
@@ -118,13 +158,23 @@ h1, h2, h3, h4, h5, h6 {
   to { background-position: 200% center; }
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+@keyframes slow-zoom {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.1); }
 }
 
-.reveal {
-  animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+.animate-slow-zoom {
+  animation: slow-zoom 20s ease-in-out infinite alternate;
+}
+
+/* Scroll Indicator */
+@keyframes bounce-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(20px); }
+}
+
+.animate-bounce-slow {
+  animation: bounce-slow 2s infinite;
 }
 
 @keyframes marquee {
@@ -152,4 +202,10 @@ h1, h2, h3, h4, h5, h6 {
 ::-webkit-scrollbar-thumb {
   background: var(--primary);
   border-radius: 10px;
+}
+
+/* Interaction fixes */
+.no-select {
+  user-select: none;
+  -webkit-user-drag: none;
 }

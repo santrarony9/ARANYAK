@@ -10,8 +10,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <FadeIn>
-      <main className="min-h-screen flex flex-col">
+    <main className="min-h-screen flex flex-col">
       <Header />
 
       <section className="py-20 burgundy-gradient text-white text-center">
@@ -71,6 +70,5 @@ export default function AboutPage() {
 
       <Footer />
       </main>
-    </FadeIn>
   );
 }

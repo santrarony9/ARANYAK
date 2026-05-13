@@ -40,8 +40,7 @@ export default function CategoryPage() {
   });
 
   return (
-    <FadeIn>
-      <main className="min-h-screen flex flex-col bg-white">
+    <main className="min-h-screen flex flex-col bg-white">
       <Header />
       <section className="py-24 burgundy-gradient text-white text-center relative overflow-hidden">
         <div className="absolute inset-0 opacity-10 bg-[url('/pattern.png')] bg-repeat" />
@@ -123,7 +122,6 @@ export default function CategoryPage() {
         </div>
       </section>
       <Footer />
-      </main>
-    </FadeIn>
+    </main>
   );
 }

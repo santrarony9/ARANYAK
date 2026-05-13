@@ -2,49 +2,56 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Link from 'next/link';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 import { CATEGORIES } from '@/constants/categories';
 import { Reveal, FadeIn } from '@/components/animations/Reveal';
 
 export default function Home() {
   return (
-    <FadeIn>
-      <main className="min-h-screen flex flex-col">
+      <main className="min-h-screen flex flex-col silk-texture">
       <Header />
       
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        <Image 
-          src="/hero-banner.png" 
-          alt="Aranyak Jewellers Collection" 
-          fill
-          className="object-cover scale-110 animate-slow-zoom"
-          priority
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/60" />
+        <motion.div 
+          className="absolute inset-0"
+          initial={{ scale: 1.2 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 2, ease: "easeOut" }}
+        >
+          <Image 
+            src="/hero-banner.png" 
+            alt="Aranyak Jewellers Collection" 
+            fill
+            className="object-cover animate-slow-zoom no-select"
+            priority
+          />
+        </motion.div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/30 to-black/70" />
         
         <div className="relative z-10 text-center space-y-8 px-4 max-w-5xl mx-auto">
-            <Reveal>
-              <h2 className="text-secondary text-xs md:text-sm font-medium tracking-[0.6em] uppercase mb-4">
+            <Reveal y={40}>
+              <h2 className="text-secondary text-xs md:text-sm font-medium tracking-[0.6em] uppercase mb-4 drop-shadow-md">
                 Legacy of Excellence Since 1995
               </h2>
             </Reveal>
-            <Reveal delay={0.2}>
-              <h1 className="text-5xl md:text-8xl font-serif font-bold text-white leading-[1.1] mb-8">
-                Where Every Piece <br /> <span className="font-editorial text-secondary">Tells a Story</span>
+            <Reveal delay={0.2} y={40}>
+              <h1 className="text-6xl md:text-9xl font-serif font-bold text-white leading-[1.1] mb-8 drop-shadow-2xl">
+                Where Every Piece <br /> <span className="font-editorial text-secondary italic">Tells a Story</span>
               </h1>
             </Reveal>
-            <Reveal delay={0.4}>
-              <div className="flex flex-col md:flex-row items-center justify-center gap-6">
+            <Reveal delay={0.4} y={40}>
+              <div className="flex flex-col md:flex-row items-center justify-center gap-8">
                 <Link 
                   href="/collections" 
-                  className="group relative px-12 py-5 bg-secondary text-primary font-bold tracking-[0.3em] uppercase text-[10px] overflow-hidden transition-all"
+                  className="group relative px-16 py-6 bg-secondary text-primary font-bold tracking-[0.4em] uppercase text-[10px] overflow-hidden transition-all shadow-[0_20px_50px_rgba(212,175,55,0.3)] luxury-shimmer"
                 >
                   <span className="relative z-10">Discover Masterpieces</span>
                   <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
                 </Link>
                 <Link 
                   href="/stores" 
-                  className="px-12 py-5 border border-white/30 text-white font-bold tracking-[0.3em] uppercase text-[10px] hover:bg-white hover:text-primary transition-all"
+                  className="px-16 py-6 border border-white/40 text-white font-bold tracking-[0.4em] uppercase text-[10px] hover:bg-white hover:text-primary transition-all backdrop-blur-sm"
                 >
                   Visit Our Showrooms
                 </Link>
@@ -53,9 +60,14 @@ export default function Home() {
         </div>
 
         {/* Scroll Indicator */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center space-y-2 opacity-50">
-          <div className="w-[1px] h-12 bg-white/50 relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-full bg-secondary animate-bounce-slow" />
+        <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center space-y-4 opacity-70">
+          <span className="text-[8px] uppercase tracking-[0.5em] text-white/50 font-bold">Scroll to Explore</span>
+          <div className="w-[1px] h-16 bg-white/20 relative overflow-hidden">
+            <motion.div 
+              className="absolute top-0 left-0 w-full h-1/2 bg-secondary"
+              animate={{ top: ["0%", "100%"] }}
+              transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+            />
           </div>
         </div>
       </section>
@@ -168,6 +180,5 @@ export default function Home() {
 
       <Footer />
     </main>
-    </FadeIn>
   );
 }
