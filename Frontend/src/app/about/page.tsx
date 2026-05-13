@@ -24,7 +24,7 @@ export default function AboutPage() {
         <div className="container mx-auto px-4 max-w-4xl">
           <div className="space-y-12 text-center">
             <Reveal>
-              <div className="grid md:grid-cols-2 gap-12 items-center text-left">
+              <div className="grid md:grid-cols-2 gap-12 items-center text-center md:text-left">
                 <div className="relative aspect-square overflow-hidden gold-foil-border">
                   <img 
                     src="/md.jpg" 

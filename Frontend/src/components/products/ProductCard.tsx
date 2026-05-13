@@ -120,9 +120,9 @@ const ProductCard = ({ product }: ProductCardProps) => {
         </div>
 
         {/* Info */}
-        <div className="p-6 space-y-4 relative bg-white">
-          <div className="space-y-1.5">
-            <h3 className="text-sm font-medium text-foreground group-hover:text-primary transition-colors line-clamp-1 uppercase tracking-tight font-serif italic">
+        <div className="p-6 space-y-4 relative bg-white flex flex-col h-[180px]">
+          <div className="space-y-1.5 flex-1">
+            <h3 className="text-sm font-medium text-foreground group-hover:text-primary transition-colors line-clamp-2 uppercase tracking-tight font-serif italic h-10 overflow-hidden">
               {product.name}
             </h3>
             <div className="flex items-center gap-2">
@@ -133,7 +133,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
             </div>
           </div>
           
-          <div className="flex items-center justify-between pt-3 border-t border-ivory">
+          <div className="flex items-center justify-between pt-3 border-t border-ivory mt-auto">
             {price > 0 ? (
               <p className="text-lg font-serif font-bold text-primary tracking-tight">
                 ₹{price.toLocaleString('en-IN')}

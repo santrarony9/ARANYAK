@@ -60,7 +60,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-ivory/10 pt-8 flex flex-col md:row items-center justify-between text-[10px] text-ivory/40 uppercase tracking-widest">
+        <div className="border-t border-ivory/10 pt-8 flex flex-col md:flex-row items-center justify-between text-[10px] text-ivory/40 uppercase tracking-widest">
           <p>© 2024 Aranyak Jewellers. All Rights Reserved.</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <Link href="/privacy" className="hover:text-ivory/70">Privacy Policy</Link>
