@@ -6,6 +6,7 @@ import Footer from '@/components/layout/Footer';
 import { api } from '@/lib/api';
 import { useParams } from 'next/navigation';
 import { useCart } from '@/context/CartContext';
+import Link from 'next/link';
 
 export default function ProductDetailPage() {
   const params = useParams();
