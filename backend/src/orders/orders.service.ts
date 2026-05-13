@@ -56,7 +56,7 @@ export class OrdersService {
     const order = await this.prisma.order.create({
       data: {
         userId,
-        totalAmount: finalTotal,
+        totalAmount: finalTotal || 0,
         status: 'PENDING',
         paymentStatus: 'PENDING',
         shippingAddress,
